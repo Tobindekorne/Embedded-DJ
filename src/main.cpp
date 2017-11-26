@@ -18,7 +18,7 @@ float	B_M_Note = 0.00202;
 	DigitalIn switch_5(PA_5);
 	DigitalIn	switch_6(PA_6);
 	DigitalIn switch_7(PA_7);
-	DigitalIn record_switch(PA_8);
+	DigitalIn record_switch(PB_6);
 //Define output bus for the RGB LED
 	DigitalOut record(PB_10);
 
@@ -31,9 +31,14 @@ Define analog inputs
 */
 	PwmOut speaker(D6); //define the PWM output
 
-void delay(float time) {
+bool delay(float time) {
 	volatile int i;
-	for (i = 0; i < 1000000*time; i++);
+	for (i = 0; i < 1000000*time; i++) {
+		if(record_switch == 0) {
+			return false;
+		}
+	}
+	return true;
 }
 
 Timer t;
@@ -45,7 +50,7 @@ void shutUP(){
 void playNote(float freq){
 	speaker = 0.7;
 	speaker.period(freq);
-	wait(0.1);
+	delay(0.1);
 }
 
 //No Real-Time PlayBack
@@ -55,22 +60,27 @@ void DEBUGdisplayNPlayNotes(float noteSave[], int count) {
 		device.printf("\n\r");
 		device.printf("%i, %f", i + 1, noteSave[i]);
 		playNote(noteSave[i]);
-		wait(.5);
+		if(!delay(.5)) {
+			break;
+		}
 	}
 	shutUP();
 }
 /*----------------------------------------------------------------------------
  MAIN function
  *----------------------------------------------------------------------------*/
-
 int main(){
+	//Debug Console Output
 	device.baud(9600);
 	device.printf("Debug Log: Program Start");
 
-	bool s1, s2, s3, s4, s5, s6, s7, s8 = false;
-	bool recording = true;
+	//Button flags for counter
+	bool s1, s2, s3, s4, s5, s6, s7 = false;
+	bool recording = false; // Only start recording when the rec button is pushed first.
 
+	// Index tracer and button count
 	int noteMarker = 0;
+	// For Saving Played Notes
 	float noteSave[100] = {0};
 
 	while (1) {
@@ -176,19 +186,21 @@ int main(){
 			}
 			if (record_switch == 0) {
 				recording = false;
+				device.printf("\r\rStopped Recording\r\r");
 				wait(1);
+				}
+			}
+			while (!recording) {
+				DEBUGdisplayNPlayNotes(noteSave, noteMarker);
+				wait(.5);
+				if (record_switch == 0){
+					noteMarker = 0;
+					device.printf("\r\rStarted Recording!\r\r");
+					recording = true;
+					wait(1);
+				}
 			}
 		}
-		while (!recording) {
-			DEBUGdisplayNPlayNotes(noteSave, noteMarker);
-			wait(.5);
-			if (record_switch == 0){
-				noteMarker = 0;
-				recording = true;
-				wait(1);
-			}
-		}
-	}
 }
 
 // *******************************CSUSM Copyright (c) Tobin and Teddy 2017*************************************
