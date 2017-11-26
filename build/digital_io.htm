@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\build\digital_io.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\build\digital_io.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun Nov 26 15:10:33 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun Nov 26 15:18:39 2017
 <BR><P>
 <H3>Maximum Stack Usage =        584 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -182,7 +182,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::PwmOut::operator =(float)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEBUGdisplayNPlayNotes(float*, int)
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[6d]"></a>playNote(float)</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, main.o(.text))
@@ -196,13 +197,14 @@ Global Symbols
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[70]"></a>DEBUGdisplayNPlayNotes(float*, int)</STRONG> (Thumb, 98 bytes, Stack size 32 bytes, main.o(.text))
+<P><STRONG><a name="[70]"></a>DEBUGdisplayNPlayNotes(float*, int)</STRONG> (Thumb, 102 bytes, Stack size 32 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = DEBUGdisplayNPlayNotes(float*, int) &rArr; playNote(float) &rArr; pwmout_period &rArr; pwmout_period_us &rArr; pwmout_write &rArr; HAL_TIM_PWM_ConfigChannel
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;playNote(float)
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shutUP()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>

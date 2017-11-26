@@ -56,6 +56,7 @@ void DEBUGdisplayNPlayNotes(float noteSave[], int count) {
 		playNote(noteSave[i]);
 		wait(.5);
 	}
+	shutUP();
 }
 /*----------------------------------------------------------------------------
  MAIN function
