@@ -22,9 +22,17 @@ PROGRAMMING USING MBED API
 	DigitalIn switch_2(PB_3);
 	DigitalIn switch_3(PB_5);
 	DigitalIn switch_4(PB_4);
-
+	DigitalIn switch_5(PA_5);
+	DigitalIn	switch_6(PA_6);
+	DigitalIn switch_7(PA_7);
 //Define output bus for the RGB LED
 	DigitalOut record(PB_10);
+
+/*
+Define the PWM speaker output
+Define analog inputs
+*/
+	PwmOut speaker(D6); //define the PWM output
 
 void delay(float time) {
 	volatile int i;
@@ -33,39 +41,75 @@ void delay(float time) {
 Serial device(UART_TX, UART_RX);
 Timer t;
 
+void shutUP(){
+	speaker = 0;
+}
+
+void playNote(float freq){
+	speaker = 0.7;
+	speaker.period(freq);
+	wait(0.1);
+}
+		
+
 /*----------------------------------------------------------------------------
  MAIN function
  *----------------------------------------------------------------------------*/
 
 int main(){
-	int count = 0;
-	bool s1, s2, s3, s4;
-	s1 = false;
-	s2 = false;
-	s3 = false;
-	s4 = false;
-	t.start();
-		device.printf("Sup, world?");
-		t.stop();
-		device.printf("Sup world took %d ms", t.read_ms());
-	wait(20);
-	while(1){
-		record = 0;
-		
-		if (switch_1 == 0) { //if button 1 was pressed
-			t.start();
+	float b = 1/8000;
+	float a = (1/320) - (1/8000);
+
+	while(1) {
+		if (switch_1 == 0) {//If button 1 was pressed
+			//Play Middle C
+			playNote(.00382);
 		}
 		if (switch_1 == 1) {
-			t.stop();
-			device.printf("t=%d", t.read_ms());
-			wait(5);
-		}	
-	}
-	while(1) {
-			record = 1;
-			delay(1);
-			record = 0;
-			delay(1);
+			shutUP();
+		}
+		if (switch_2 == 0) {
+			//Play Middle D
+			playNote(.00341);
+		}
+		if (switch_2 == 1) {
+			shutUP();
+		}
+		if (switch_3 == 0) {
+			//Play Middle E
+			playNote(.00303);
+		}
+		if (switch_3 == 1) {
+			shutUP();
+		}
+		if (switch_4 == 0) {
+			//Play Middle F
+			playNote(.00286);
+		}
+		if (switch_4 == 1) {
+			shutUP();
+		}
+		if (switch_5 == 0) {
+			//Play Middle G
+			playNote(.00255);
+		}
+		if (switch_5 == 1) {
+			shutUP();
+		}
+		if (switch_6 == 0) {
+			//Play Middle A
+			playNote(.00227);
+		}
+		if (switch_6 == 1) {
+			shutUP();
+		}
+		if (switch_7 == 0) {
+			//Play Middle B
+			playNote(.00202);
+		}
+		if (switch_7 == 1) {
+			shutUP();
+		}
 	}
 }
 
