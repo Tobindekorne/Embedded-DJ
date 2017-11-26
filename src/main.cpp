@@ -1,6 +1,15 @@
 #include "mbed.h"
 #include "pindef.h"
 
+//Defining Note Frequencies
+float C_M_Note = 0.00382;
+float D_M_Note = 0.00341;
+float	E_M_Note = 0.00301;
+float	F_M_Note = 0.00286;
+float	G_M_Note = 0.00255;
+float	A_M_Note = 0.00227;
+float	B_M_Note = 0.00202;
+	
 //Define input bus
 	DigitalIn switch_1(PA_10);
 	DigitalIn switch_2(PB_3);
@@ -37,7 +46,6 @@ void playNote(float freq){
 	speaker.period(freq);
 	wait(0.1);
 }
-		
 
 /*----------------------------------------------------------------------------
  MAIN function
@@ -50,16 +58,19 @@ int main(){
 	bool s1, s2, s3, s4, s5, s6, s7, s8 = false;
 	
 	int noteMarker = 0;
+	float noteSave[100] = {0};
 	
 	while(1) {
 		device.printf("%i ", noteMarker);
 		if (switch_1 == 0) {//If button 1 was pressed
 			if(!s1){
+				noteSave[noteMarker] = C_M_Note;
 				noteMarker++;
 				s1 = true;
 			}
 			//Play Middle C
-			playNote(.00382);
+			playNote(C_M_Note);
+			device.printf("%f ", C_M_Note);
 		}
 		if (switch_1 == 1) {
 			shutUP();
@@ -67,11 +78,13 @@ int main(){
 		}
 		if (switch_2 == 0) {
 			if(!s2){
+				noteSave[noteMarker] = D_M_Note;
 				noteMarker++;
 				s2 = true;
 			}
 			//Play Middle D
-			playNote(.00341);
+			playNote(D_M_Note);
+			device.printf("%f ", D_M_Note);
 		}
 		if (switch_2 == 1) {
 			shutUP();
@@ -79,11 +92,13 @@ int main(){
 		}
 		if (switch_3 == 0) {
 			if(!s3){
+				noteSave[noteMarker] = E_M_Note;
 				noteMarker++;
 				s3 = true;
 			}
 			//Play Middle E
-			playNote(.00303);
+			playNote(E_M_Note);
+			device.printf("%f ", E_M_Note);
 		}
 		if (switch_3 == 1) {
 			shutUP();
@@ -91,11 +106,13 @@ int main(){
 		}
 		if (switch_4 == 0) {
 			if(!s4) {
+				noteSave[noteMarker] = F_M_Note;
 				noteMarker++;
 				s4 = true;
 			}
 			//Play Middle F
-			playNote(.00286);
+			playNote(F_M_Note);
+			device.printf("%f ", F_M_Note);
 		}
 		if (switch_4 == 1) {
 			shutUP();
@@ -103,11 +120,13 @@ int main(){
 		}
 		if (switch_5 == 0) {
 			if(!s5){
+				noteSave[noteMarker] = G_M_Note;
 				noteMarker++;
 				s5 = true;
 			}
 			//Play Middle G
-			playNote(.00255);
+			playNote(G_M_Note);
+			device.printf("%f ", G_M_Note);
 		}
 		if (switch_5 == 1) {
 			shutUP();
@@ -115,11 +134,13 @@ int main(){
 		}
 		if (switch_6 == 0) {
 			if(!s6){
+				noteSave[noteMarker] = A_M_Note;
 				noteMarker++;
 				s6 = true;
 			}
 			//Play Middle A
-			playNote(.00227);
+			playNote(A_M_Note);
+			device.printf("%f ", A_M_Note);
 		}
 		if (switch_6 == 1) {
 			shutUP();
@@ -127,11 +148,13 @@ int main(){
 		}
 		if (switch_7 == 0) {
 			if(!s7){
+				noteSave[noteMarker] = B_M_Note;
 				noteMarker++;
 				s7 = true;
 			}
 			//Play Middle B
-			playNote(.00202);
+			playNote(B_M_Note);
+			device.printf("%f ", B_M_Note);
 		}
 		if (switch_7 == 1) {
 			shutUP();
