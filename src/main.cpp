@@ -47,6 +47,16 @@ void playNote(float freq){
 	wait(0.1);
 }
 
+//No Real-Time PlayBack
+void DEBUGdisplayNPlayNotes(float noteSave[], int count) {
+	int i;
+	for(i = 0; i < count; i++) {
+		device.printf("\n\r");
+		device.printf("%i, %f", i + 1, noteSave[i]);
+		playNote(noteSave[i]);
+		wait(.5);
+	}
+}
 /*----------------------------------------------------------------------------
  MAIN function
  *----------------------------------------------------------------------------*/
@@ -60,7 +70,7 @@ int main(){
 	int noteMarker = 0;
 	float noteSave[100] = {0};
 	
-	while(1) {
+	while(1 && noteMarker != 10) {
 		device.printf("%i ", noteMarker);
 		if (switch_1 == 0) {//If button 1 was pressed
 			if(!s1){
@@ -161,6 +171,7 @@ int main(){
 			s7 = false;
 		}
 	}
+	DEBUGdisplayNPlayNotes(noteSave, noteMarker);
 }
 
 // *******************************CSUSM Copyright (c) Tobin and Teddy 2017*************************************
