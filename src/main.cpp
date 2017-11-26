@@ -1,19 +1,3 @@
-/*----------------------------------------------------------------------------
-LAB EXERCISE - DIGITAL INPUTS AND OUTPUTS
-PROGRAMMING USING MBED API
- ----------------------------------------
- In this exercise you need to use the mbed API functions to:
- 
-	1) Define BusIn, BusOut interfaces for inputs and outputs
-	2) The RGB LED is controlled by the buttons:
-			+ Button 1 - light RED
-			+ Button 2 - light BLUE
-			+ Button 3 - light GREEN
-			+ Button 4 - light WHITE (RED, GREEN and BLUE at the same time)
-			
-	GOOD LUCK!
- *----------------------------------------------------------------------------*/
-
 #include "mbed.h"
 #include "pindef.h"
 
@@ -57,9 +41,9 @@ void playNote(float freq){
  *----------------------------------------------------------------------------*/
 
 int main(){
-	float b = 1/8000;
-	float a = (1/320) - (1/8000);
-
+	
+	
+	
 	while(1) {
 		if (switch_1 == 0) {//If button 1 was pressed
 			//Play Middle C
