@@ -1,0 +1,52 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.24.2.0
+Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Tobin deKorne, CSUSM, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.24.1
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 5 (build 528)
+Assembler:       Armasm.exe V5.06 update 5 (build 528)
+Linker/Locator:  ArmLink.exe V5.06 update 5 (build 528)
+Library Manager: ArmAr.exe V5.06 update 5 (build 528)
+Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
+CPU DLL:         SARMCM3.DLL V5.24.1
+Dialog DLL:      DCM.DLL V1.16.0.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
+Dialog DLL:      TCM.DLL V1.32.0.0
+ 
+<h2>Project:</h2>
+C:\Users\new\Desktop\CS435\Final\digital_io.uvproj
+Project File Date:  10/13/2017
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+*** Warning: Using Microlib and C++ file(s) might cause the linker to fail !
+  
+Rebuild target 'mbed NUCLEO_F401RE'
+compiling main.cpp...
+src\main.cpp(65): warning:  #128-D: loop is not reachable
+  	while(1) {
+src\main.cpp(41): warning:  #177-D: variable "count"  was declared but never referenced
+  	int count = 0;
+src\main.cpp(42): warning:  #550-D: variable "s1"  was set but never used
+  	bool s1, s2, s3, s4;
+src\main.cpp(42): warning:  #550-D: variable "s2"  was set but never used
+  	bool s1, s2, s3, s4;
+src\main.cpp(42): warning:  #550-D: variable "s3"  was set but never used
+  	bool s1, s2, s3, s4;
+src\main.cpp(42): warning:  #550-D: variable "s4"  was set but never used
+  	bool s1, s2, s3, s4;
+src\main.cpp: 6 warnings, 0 errors
+linking...
+Program Size: Code=13676 RO-data=1540 RW-data=52 ZI-data=1576  
+".\build\digital_io.axf" - 0 Error(s), 6 Warning(s).
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
