@@ -54,11 +54,11 @@ int main(){
 	while(1) {
 		device.printf("%i ", noteMarker);
 		if (switch_1 == 0) {//If button 1 was pressed
-			//Play Middle C
 			if(!s1){
 				noteMarker++;
 				s1 = true;
 			}
+			//Play Middle C
 			playNote(.00382);
 		}
 		if (switch_1 == 1) {
@@ -66,46 +66,76 @@ int main(){
 			s1 = false;
 		}
 		if (switch_2 == 0) {
+			if(!s2){
+				noteMarker++;
+				s2 = true;
+			}
 			//Play Middle D
 			playNote(.00341);
 		}
 		if (switch_2 == 1) {
 			shutUP();
+			s2 = false;
 		}
 		if (switch_3 == 0) {
+			if(!s3){
+				noteMarker++;
+				s3 = true;
+			}
 			//Play Middle E
 			playNote(.00303);
 		}
 		if (switch_3 == 1) {
 			shutUP();
+			s3 = false;
 		}
 		if (switch_4 == 0) {
+			if(!s4) {
+				noteMarker++;
+				s4 = true;
+			}
 			//Play Middle F
 			playNote(.00286);
 		}
 		if (switch_4 == 1) {
 			shutUP();
+			s4 = false;
 		}
 		if (switch_5 == 0) {
+			if(!s5){
+				noteMarker++;
+				s5 = true;
+			}
 			//Play Middle G
 			playNote(.00255);
 		}
 		if (switch_5 == 1) {
 			shutUP();
+			s5 = false;
 		}
 		if (switch_6 == 0) {
+			if(!s6){
+				noteMarker++;
+				s6 = true;
+			}
 			//Play Middle A
 			playNote(.00227);
 		}
 		if (switch_6 == 1) {
 			shutUP();
+			s6 = false;
 		}
 		if (switch_7 == 0) {
+			if(!s7){
+				noteMarker++;
+				s7 = true;
+			}
 			//Play Middle B
 			playNote(.00202);
 		}
 		if (switch_7 == 1) {
 			shutUP();
+			s7 = false;
 		}
 	}
 }
