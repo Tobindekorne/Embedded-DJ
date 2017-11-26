@@ -12,6 +12,9 @@
 //Define output bus for the RGB LED
 	DigitalOut record(PB_10);
 
+// Serial tx, rx connected to the PC via an USB cable
+Serial device(UART_TX, UART_RX);
+
 /*
 Define the PWM speaker output
 Define analog inputs
@@ -22,7 +25,7 @@ void delay(float time) {
 	volatile int i;
 	for (i = 0; i < 1000000*time; i++);
 }
-Serial device(UART_TX, UART_RX);
+
 Timer t;
 
 void shutUP(){
@@ -41,16 +44,26 @@ void playNote(float freq){
  *----------------------------------------------------------------------------*/
 
 int main(){
+	device.baud(9600);
+	device.printf("Debug Log: Program Start");
 	
+	bool s1, s2, s3, s4, s5, s6, s7, s8 = false;
 	
+	int noteMarker = 0;
 	
 	while(1) {
+		device.printf("%i ", noteMarker);
 		if (switch_1 == 0) {//If button 1 was pressed
 			//Play Middle C
+			if(!s1){
+				noteMarker++;
+				s1 = true;
+			}
 			playNote(.00382);
 		}
 		if (switch_1 == 1) {
 			shutUP();
+			s1 = false;
 		}
 		if (switch_2 == 0) {
 			//Play Middle D
