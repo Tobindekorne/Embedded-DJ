@@ -20,8 +20,8 @@ float	B_M_Note = 0.00202;
 	DigitalIn switch_7(PA_7);
 	DigitalIn record_switch(PB_6);
 //Define output bus for the RGB LED
-	DigitalOut record(PB_10);
-
+	DigitalOut recordingLED(PA_8);
+	DigitalOut playingLED(PA_9);
 // Serial tx, rx connected to the PC via an USB cable
 Serial device(UART_TX, UART_RX);
 
@@ -80,14 +80,21 @@ int main(){
 
 	// Index tracer and button count
 	int noteMarker = 0;
+	
 	// For Saving Played Notes
 	float noteSave[100] = {0};
-
+	int timeSave[100] = {0};
+	
 	while (1) {
+		recordingLED = 0;
+		playingLED = 0;
 		while(recording) {
+			recordingLED = 1;
+			playingLED = 0;
 			device.printf("%i ", noteMarker);
 			if (switch_1 == 0) {//If button 1 was pressed
 				if(!s1){
+					t.start();
 					noteSave[noteMarker] = C_M_Note;
 					noteMarker++;
 					s1 = true;
@@ -97,6 +104,10 @@ int main(){
 				device.printf("%f ", C_M_Note);
 			}
 			if (switch_1 == 1) {
+				t.stop();
+				timeSave[noteMarker] = t.read_ms();
+				device.printf(", %i MS\n\r", t.read_ms());
+				t.reset();
 				shutUP();
 				s1 = false;
 			}
@@ -186,16 +197,18 @@ int main(){
 			}
 			if (record_switch == 0) {
 				recording = false;
-				device.printf("\r\rStopped Recording\r\r");
+				device.printf("\n\rStopped Recording\n\r");
 				wait(1);
 				}
 			}
 			while (!recording) {
+				recordingLED = 0;
+				playingLED = 1;
 				DEBUGdisplayNPlayNotes(noteSave, noteMarker);
 				wait(.5);
 				if (record_switch == 0){
 					noteMarker = 0;
-					device.printf("\r\rStarted Recording!\r\r");
+					device.printf("\n\rStarted Recording!\n\r");
 					recording = true;
 					wait(1);
 				}
