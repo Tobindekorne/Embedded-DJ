@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\build\digital_io.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\build\digital_io.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun Nov 26 16:28:21 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Mon Dec 04 22:59:19 2017
 <BR><P>
-<H3>Maximum Stack Usage =        968 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        952 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-main &rArr; $Super$$main &rArr; DEBUGdisplayNPlayNotes(float*, int) &rArr; playNote(float) &rArr; delay(float) &rArr; mbed::DigitalIn::operator int() &rArr; mbed_assert_internal &rArr; mbed_die &rArr; wait_ms &rArr; us_ticker_read &rArr; HAL_InitTick &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
+main &rArr; $Super$$main &rArr; DEBUGdisplayNPlayNotes(float*, int*, int) &rArr; playNote(float) &rArr; pwmout_period &rArr; pwmout_period_us &rArr; pwmout_write &rArr; HAL_TIM_PWM_ConfigChannel
 <P>
 <H3>
 Mutually Recursive functions
@@ -180,8 +180,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalIn::operator int()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEBUGdisplayNPlayNotes(float*, int)
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;playNote(float)
+<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEBUGdisplayNPlayNotes(float*, int*, int)
 </UL>
 
 <P><STRONG><a name="[6d]"></a>shutUP()</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, main.o(.text))
@@ -189,50 +188,48 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::PwmOut::operator =(float)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEBUGdisplayNPlayNotes(float*, int)
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEBUGdisplayNPlayNotes(float*, int*, int)
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[6f]"></a>playNote(float)</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = playNote(float) &rArr; delay(float) &rArr; mbed::DigitalIn::operator int() &rArr; mbed_assert_internal &rArr; mbed_die &rArr; wait_ms &rArr; us_ticker_read &rArr; HAL_InitTick &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
+<P><STRONG><a name="[6f]"></a>playNote(float)</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = playNote(float) &rArr; pwmout_period &rArr; pwmout_period_us &rArr; pwmout_write &rArr; HAL_TIM_PWM_ConfigChannel
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::PwmOut::operator =(float)
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_period
-<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay(float)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEBUGdisplayNPlayNotes(float*, int)
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEBUGdisplayNPlayNotes(float*, int*, int)
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[71]"></a>DEBUGdisplayNPlayNotes(float*, int)</STRONG> (Thumb, 108 bytes, Stack size 32 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = DEBUGdisplayNPlayNotes(float*, int) &rArr; playNote(float) &rArr; delay(float) &rArr; mbed::DigitalIn::operator int() &rArr; mbed_assert_internal &rArr; mbed_die &rArr; wait_ms &rArr; us_ticker_read &rArr; HAL_InitTick &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
+<P><STRONG><a name="[71]"></a>DEBUGdisplayNPlayNotes(float*, int*, int)</STRONG> (Thumb, 100 bytes, Stack size 32 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = DEBUGdisplayNPlayNotes(float*, int*, int) &rArr; playNote(float) &rArr; pwmout_period &rArr; pwmout_period_us &rArr; pwmout_write &rArr; HAL_TIM_PWM_ConfigChannel
 </UL>
-<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
+<BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;playNote(float)
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shutUP()
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay(float)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[74]"></a>$Super$$main</STRONG> (Thumb, 1028 bytes, Stack size 816 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 960<LI>Call Chain = $Super$$main &rArr; DEBUGdisplayNPlayNotes(float*, int) &rArr; playNote(float) &rArr; delay(float) &rArr; mbed::DigitalIn::operator int() &rArr; mbed_assert_internal &rArr; mbed_die &rArr; wait_ms &rArr; us_ticker_read &rArr; HAL_InitTick &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
+<P><STRONG><a name="[73]"></a>$Super$$main</STRONG> (Thumb, 1296 bytes, Stack size 816 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 944<LI>Call Chain = $Super$$main &rArr; DEBUGdisplayNPlayNotes(float*, int*, int) &rArr; playNote(float) &rArr; pwmout_period &rArr; pwmout_period_us &rArr; pwmout_write &rArr; HAL_TIM_PWM_ConfigChannel
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalIn::operator int()
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalOut::operator =(int)
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalOut::operator =(int)
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::read_ms()
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::start()
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::reset()
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::stop()
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::baud(int)
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEBUGdisplayNPlayNotes(float*, int)
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::start()
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::reset()
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::stop()
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::baud(int)
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEBUGdisplayNPlayNotes(float*, int*, int)
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;playNote(float)
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shutUP()
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -522,10 +519,10 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
 
-<P><STRONG><a name="[76]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
+<P><STRONG><a name="[75]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalIn::DigitalIn(PinName)
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalOut::DigitalOut(PinName)
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fopen
 </UL>
 
@@ -582,9 +579,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp_C_M_Note
 </UL>
 
-<P><STRONG><a name="[73]"></a>__aeabi_f2d</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, f2d.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEBUGdisplayNPlayNotes(float*, int)
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<P><STRONG><a name="[7b]"></a>__aeabi_f2d</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, f2d.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[10d]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
@@ -747,11 +743,11 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4c]"></a>main</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, retarget.o(i.$Sub$$main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 968<LI>Call Chain = main &rArr; $Super$$main &rArr; DEBUGdisplayNPlayNotes(float*, int) &rArr; playNote(float) &rArr; delay(float) &rArr; mbed::DigitalIn::operator int() &rArr; mbed_assert_internal &rArr; mbed_die &rArr; wait_ms &rArr; us_ticker_read &rArr; HAL_InitTick &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
+<BR><BR>[Stack]<UL><LI>Max Depth = 952<LI>Call Chain = main &rArr; $Super$$main &rArr; DEBUGdisplayNPlayNotes(float*, int*, int) &rArr; playNote(float) &rArr; pwmout_period &rArr; pwmout_period_us &rArr; pwmout_write &rArr; HAL_TIM_PWM_ConfigChannel
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_sdk_init
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_main
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
@@ -774,8 +770,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = HAL_Init &rArr; HAL_InitTick &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriorityGrouping
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MspInit
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_sdk_init
@@ -956,19 +952,19 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = mbed::DigitalOut::DigitalOut(PinName) &rArr; gpio_init_out &rArr; gpio_init &rArr; pin_function &rArr; Set_GPIO_Clock &rArr; error &rArr; exit &rArr; mbed_die &rArr; wait_ms &rArr; us_ticker_read &rArr; HAL_InitTick &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp_C_M_Note
 </UL>
 
 <P><STRONG><a name="[114]"></a>mbed::DigitalOut::DigitalOut__sub_object(PinName)</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, main.o(i._ZN4mbed10DigitalOutC1E7PinName), UNUSED)
 
-<P><STRONG><a name="[77]"></a>mbed::DigitalOut::operator =(int)</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, main.o(i._ZN4mbed10DigitalOutaSEi))
+<P><STRONG><a name="[76]"></a>mbed::DigitalOut::operator =(int)</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, main.o(i._ZN4mbed10DigitalOutaSEi))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = mbed::DigitalOut::operator =(int) &rArr; mbed_assert_internal &rArr; mbed_die &rArr; wait_ms &rArr; us_ticker_read &rArr; HAL_InitTick &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[115]"></a>mbed::FileHandle::~FileHandle()</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, retarget.o(i._ZN4mbed10FileHandleD2Ev), UNUSED)
@@ -993,12 +989,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> SerialBase.o(i._ZN4mbed10SerialBaseC1E7PinNameS1_)
 </UL>
-<P><STRONG><a name="[75]"></a>mbed::SerialBase::baud(int)</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, SerialBase.o(i._ZN4mbed10SerialBase4baudEi))
+<P><STRONG><a name="[74]"></a>mbed::SerialBase::baud(int)</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, SerialBase.o(i._ZN4mbed10SerialBase4baudEi))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = mbed::SerialBase::baud(int) &rArr; serial_baud &rArr; HAL_UART_Init &rArr; UART_SetConfig &rArr; HAL_RCC_GetPCLK2Freq &rArr; HAL_RCC_GetHCLKFreq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_baud
 </UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[c0]"></a>mbed::SerialBase::SerialBase(PinName, PinName)</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, SerialBase.o(i._ZN4mbed10SerialBaseC1E7PinNameS1_))
@@ -1023,28 +1019,28 @@ Global Symbols
 
 <P><STRONG><a name="[117]"></a>mbed::FunctionPointer::FunctionPointer__sub_object(void(*)())</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, FunctionPointer.o(i._ZN4mbed15FunctionPointerC1EPFvvE), UNUSED)
 
-<P><STRONG><a name="[79]"></a>mbed::Timer::stop()</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, Timer.o(i._ZN4mbed5Timer4stopEv))
+<P><STRONG><a name="[77]"></a>mbed::Timer::stop()</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, Timer.o(i._ZN4mbed5Timer4stopEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = mbed::Timer::stop() &rArr; us_ticker_read &rArr; HAL_InitTick &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 </UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[7b]"></a>mbed::Timer::reset()</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, Timer.o(i._ZN4mbed5Timer5resetEv))
+<P><STRONG><a name="[78]"></a>mbed::Timer::reset()</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, Timer.o(i._ZN4mbed5Timer5resetEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = mbed::Timer::reset() &rArr; us_ticker_read &rArr; HAL_InitTick &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 </UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[78]"></a>mbed::Timer::start()</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, Timer.o(i._ZN4mbed5Timer5startEv))
+<P><STRONG><a name="[79]"></a>mbed::Timer::start()</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, Timer.o(i._ZN4mbed5Timer5startEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = mbed::Timer::start() &rArr; us_ticker_read &rArr; HAL_InitTick &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 </UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[7a]"></a>mbed::Timer::read_ms()</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, Timer.o(i._ZN4mbed5Timer7read_msEv))
@@ -1052,7 +1048,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 </UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[82]"></a>mbed::Timer::Timer()</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, Timer.o(i._ZN4mbed5TimerC1Ev))
@@ -1115,8 +1111,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fflush
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__c89vfprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEBUGdisplayNPlayNotes(float*, int)
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DEBUGdisplayNPlayNotes(float*, int*, int)
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[c6]"></a>mbed::Stream::Stream__sub_object(const char*)</STRONG> (Thumb, 54 bytes, Stack size 24 bytes, Stream.o(i._ZN4mbed6StreamC2EPKc))
@@ -1235,7 +1231,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = mbed::DigitalIn::DigitalIn(PinName) &rArr; gpio_init_in &rArr; gpio_init &rArr; pin_function &rArr; Set_GPIO_Clock &rArr; error &rArr; exit &rArr; mbed_die &rArr; wait_ms &rArr; us_ticker_read &rArr; HAL_InitTick &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_in
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp_C_M_Note
 </UL>
@@ -1248,7 +1244,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_assert_internal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay(float)
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[5e]"></a>thunk{-92} to mbed::Serial::_putc(int)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, Serial.o(i._ZThn92_N4mbed6Serial5_putcEi))
@@ -1351,7 +1347,7 @@ Global Symbols
 <P><STRONG><a name="[cb]"></a>fopen</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, fopen_f.o(i._fopen$full))
 <BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = fopen &rArr; freopen &rArr; _sys_open &rArr; __0sscanf &rArr; __vfscanf_char &rArr; __vfscanf &rArr; _scanf_int
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
@@ -1496,7 +1492,7 @@ Global Symbols
 <LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2fprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalIn::operator int()
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalOut::operator =(int)
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalOut::operator =(int)
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init_out
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_dir
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pin_mode
@@ -1600,8 +1596,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = pwmout_period_us &rArr; pwmout_write &rArr; HAL_TIM_PWM_ConfigChannel
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Init
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_write
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_write
 </UL>
 <BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_period
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmout_init
@@ -1623,7 +1619,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::baud(int)
+<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::baud(int)
 </UL>
 
 <P><STRONG><a name="[c2]"></a>serial_init</STRONG> (Thumb, 288 bytes, Stack size 32 bytes, serial_api.o(i.serial_init))
@@ -1685,9 +1681,9 @@ Global Symbols
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::Timer()
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::read_ms()
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::start()
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::reset()
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::stop()
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::start()
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::reset()
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Timer::stop()
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_ms
 </UL>
 
@@ -1700,7 +1696,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 </UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[f0]"></a>wait_ms</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, wait_api.o(i.wait_ms))

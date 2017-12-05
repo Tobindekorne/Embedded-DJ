@@ -48,19 +48,20 @@ void shutUP(){
 }
 
 void playNote(float freq){
-	speaker = 0.7;
+	speaker = 0.2;
 	speaker.period(freq);
-	delay(0.1);
+//	delay(0.5);
 }
 
 //No Real-Time PlayBack
-void DEBUGdisplayNPlayNotes(float noteSave[], int count) {
+void DEBUGdisplayNPlayNotes(float noteSave[], int timeSave[], int count) {
 	int i;
 	for(i = 0; i < count; i++) {
-		device.printf("\n\r");
-		device.printf("%i, %f", i + 1, noteSave[i]);
+		//device.printf("\n\r");		//line feed carriage return
+		//device.printf("%i, %f", i + 1, noteSave[i]);	//print the notes being played
 		playNote(noteSave[i]);
-		if(!delay(.5)) {
+		device.printf("TimeSave[%i] = %i\n\r", i, timeSave[i]);
+		if(!delay(timeSave[i] / 500)) {
 			break;
 		}
 	}
@@ -91,9 +92,12 @@ int main(){
 		while(recording) {
 			recordingLED = 1;
 			playingLED = 0;
-			device.printf("%i ", noteMarker);
+			//device.printf("%i ", noteMarker);
+			if (!switch_1 && !switch_2 && !switch_3 && !switch_4 && !switch_5 && !switch_6 && !switch_7)
+				t.stop();
 			if (switch_1 == 0) {//If button 1 was pressed
 				if(!s1){
+					t.reset();
 					t.start();
 					noteSave[noteMarker] = C_M_Note;
 					noteMarker++;
@@ -101,32 +105,39 @@ int main(){
 				}
 				//Play Middle C
 				playNote(C_M_Note);
-				device.printf("%f ", C_M_Note);
+				//device.printf("%f ", C_M_Note);
+				continue;
 			}
+			
 			if (switch_1 == 1) {
-				t.stop();
-				timeSave[noteMarker] = t.read_ms();
+				timeSave[noteMarker - 1] = t.read_ms();
 				device.printf(", %i MS\n\r", t.read_ms());
-				t.reset();
 				shutUP();
 				s1 = false;
 			}
 			if (switch_2 == 0) {
 				if(!s2){
+					t.reset();
+					t.start();
 					noteSave[noteMarker] = D_M_Note;
 					noteMarker++;
 					s2 = true;
 				}
 				//Play Middle D
 				playNote(D_M_Note);
-				device.printf("%f ", D_M_Note);
+				//device.printf("%f ", D_M_Note);
+				continue;
 			}
 			if (switch_2 == 1) {
+				timeSave[noteMarker - 1] = t.read_ms();
+				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s2 = false;
 			}
 			if (switch_3 == 0) {
 				if(!s3){
+					t.reset();
+					t.start();
 					noteSave[noteMarker] = E_M_Note;
 					noteMarker++;
 					s3 = true;
@@ -134,13 +145,18 @@ int main(){
 				//Play Middle E
 				playNote(E_M_Note);
 				device.printf("%f ", E_M_Note);
+				continue;
 			}
 			if (switch_3 == 1) {
+				timeSave[noteMarker - 1] = t.read_ms();
+				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s3 = false;
 			}
 			if (switch_4 == 0) {
 				if(!s4) {
+					t.reset();
+					t.start();
 					noteSave[noteMarker] = F_M_Note;
 					noteMarker++;
 					s4 = true;
@@ -148,13 +164,18 @@ int main(){
 				//Play Middle F
 				playNote(F_M_Note);
 				device.printf("%f ", F_M_Note);
+				continue;
 			}
 			if (switch_4 == 1) {
+				timeSave[noteMarker - 1] = t.read_ms();
+				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s4 = false;
 			}
 			if (switch_5 == 0) {
 				if(!s5){
+					t.reset();
+					t.start();
 					noteSave[noteMarker] = G_M_Note;
 					noteMarker++;
 					s5 = true;
@@ -162,13 +183,18 @@ int main(){
 				//Play Middle G
 				playNote(G_M_Note);
 				device.printf("%f ", G_M_Note);
+				continue;
 			}
 			if (switch_5 == 1) {
+				timeSave[noteMarker - 1] = t.read_ms();
+				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s5 = false;
 			}
 			if (switch_6 == 0) {
 				if(!s6){
+					t.reset();
+					t.start();
 					noteSave[noteMarker] = A_M_Note;
 					noteMarker++;
 					s6 = true;
@@ -176,13 +202,18 @@ int main(){
 				//Play Middle A
 				playNote(A_M_Note);
 				device.printf("%f ", A_M_Note);
+				continue;
 			}
 			if (switch_6 == 1) {
+				timeSave[noteMarker - 1] = t.read_ms();
+				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s6 = false;
 			}
 			if (switch_7 == 0) {
 				if(!s7){
+					t.reset();
+					t.start();
 					noteSave[noteMarker] = B_M_Note;
 					noteMarker++;
 					s7 = true;
@@ -190,8 +221,11 @@ int main(){
 				//Play Middle B
 				playNote(B_M_Note);
 				device.printf("%f ", B_M_Note);
+				continue;
 			}
 			if (switch_7 == 1) {
+				timeSave[noteMarker - 1] = t.read_ms();
+				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s7 = false;
 			}
@@ -201,19 +235,19 @@ int main(){
 				wait(1);
 				}
 			}
-			while (!recording) {
-				recordingLED = 0;
-				playingLED = 1;
-				DEBUGdisplayNPlayNotes(noteSave, noteMarker);
-				wait(.5);
-				if (record_switch == 0){
-					noteMarker = 0;
-					device.printf("\n\rStarted Recording!\n\r");
-					recording = true;
-					wait(1);
-				}
+		while (!recording) {
+			recordingLED = 0;
+			playingLED = 1;
+			DEBUGdisplayNPlayNotes(noteSave, timeSave, noteMarker);
+			wait(.5);
+			if (record_switch == 0){
+				noteMarker = 0;
+				device.printf("\n\rStarted Recording!\n\r");
+				recording = true;
+				wait(1);
 			}
 		}
+	}
 }
 
 // *******************************CSUSM Copyright (c) Tobin and Teddy 2017*************************************
