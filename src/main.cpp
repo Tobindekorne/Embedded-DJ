@@ -1,6 +1,6 @@
 #include "mbed.h"
 #include "pindef.h"
-
+#include "rtos.h"
 //Defining Note Frequencies
 float C_M_Note = 0.00382;
 float D_M_Note = 0.00341;
@@ -61,7 +61,7 @@ void DEBUGdisplayNPlayNotes(float noteSave[], int timeSave[], int count) {
 		//device.printf("%i, %f", i + 1, noteSave[i]);	//print the notes being played
 		playNote(noteSave[i]);
 		device.printf("TimeSave[%i] = %i\n\r", i, timeSave[i]);
-		if(!delay(timeSave[i] / 500)) {
+		if(!delay(timeSave[i] / 1000)) {
 			break;
 		}
 	}
