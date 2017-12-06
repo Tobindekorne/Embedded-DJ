@@ -22,8 +22,6 @@ float	B_M_Note = 0.00202;
 //Define output bus for the RGB LED
 	DigitalOut recordingLED(PA_8);
 	DigitalOut playingLED(PA_9);
-// Serial tx, rx connected to the PC via an USB cable
-Serial device(UART_TX, UART_RX);
 
 /*
 Define the PWM speaker output
@@ -53,14 +51,12 @@ void playNote(float freq){
 	wait_ms(100);
 }
 
-//No Real-Time PlayBack
-void DEBUGdisplayNPlayNotes(float noteSave[], int timeSave[], int count) {
+void loopNotes(float noteSave[], int timeSave[], int count) {
 	int i;
 	for(i = 0; i < count; i++) {
 		//device.printf("\n\r");		//line feed carriage return
 		//device.printf("%i, %f", i + 1, noteSave[i]);	//print the notes being played
 		playNote(noteSave[i]);
-		device.printf("TimeSave[%i] = %i\n\r", i, timeSave[i]);
 		wait_ms(timeSave[i]);
 	}
 	shutUP();
@@ -69,9 +65,6 @@ void DEBUGdisplayNPlayNotes(float noteSave[], int timeSave[], int count) {
  MAIN function
  *----------------------------------------------------------------------------*/
 int main(){
-	//Debug Console Output
-	device.baud(9600);
-	device.printf("Debug Log: Program Start");
 
 	//Button flags for counter
 	bool s1, s2, s3, s4, s5, s6, s7 = false;
@@ -109,7 +102,6 @@ int main(){
 			
 			if (switch_1 == 1) {
 				timeSave[noteMarker - 1] = t.read_ms();
-				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s1 = false;
 			}
@@ -128,7 +120,6 @@ int main(){
 			}
 			if (switch_2 == 1) {
 				timeSave[noteMarker - 1] = t.read_ms();
-				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s2 = false;
 			}
@@ -142,12 +133,10 @@ int main(){
 				}
 				//Play Middle E
 				playNote(E_M_Note);
-				device.printf("%f ", E_M_Note);
 				continue;
 			}
 			if (switch_3 == 1) {
 				timeSave[noteMarker - 1] = t.read_ms();
-				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s3 = false;
 			}
@@ -161,12 +150,10 @@ int main(){
 				}
 				//Play Middle F
 				playNote(F_M_Note);
-				device.printf("%f ", F_M_Note);
 				continue;
 			}
 			if (switch_4 == 1) {
 				timeSave[noteMarker - 1] = t.read_ms();
-				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s4 = false;
 			}
@@ -180,12 +167,10 @@ int main(){
 				}
 				//Play Middle G
 				playNote(G_M_Note);
-				device.printf("%f ", G_M_Note);
 				continue;
 			}
 			if (switch_5 == 1) {
 				timeSave[noteMarker - 1] = t.read_ms();
-				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s5 = false;
 			}
@@ -199,12 +184,10 @@ int main(){
 				}
 				//Play Middle A
 				playNote(A_M_Note);
-				device.printf("%f ", A_M_Note);
 				continue;
 			}
 			if (switch_6 == 1) {
 				timeSave[noteMarker - 1] = t.read_ms();
-				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s6 = false;
 			}
@@ -218,7 +201,6 @@ int main(){
 				}
 				//Play Middle B
 				playNote(B_M_Note);
-				device.printf("%f ", B_M_Note);
 				continue;
 			}
 			if (switch_7 == 1) {
@@ -234,11 +216,10 @@ int main(){
 		while (!recording) {
 			recordingLED = 0;
 			playingLED = 1;
-			DEBUGdisplayNPlayNotes(noteSave, timeSave, noteMarker);
+			loopNotes(noteSave, timeSave, noteMarker);
 			wait(.5);
 			if (record_switch == 0){
 				noteMarker = 0;
-				device.printf("\n\rStarted Recording!\n\r");
 				recording = true;
 				wait(1);
 			}
