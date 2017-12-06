@@ -48,9 +48,9 @@ void shutUP(){
 }
 
 void playNote(float freq){
-	speaker = 0.2;
+	speaker = 0.7;
 	speaker.period(freq);
-//	delay(0.5);
+	wait_ms(100);
 }
 
 //No Real-Time PlayBack
@@ -61,9 +61,7 @@ void DEBUGdisplayNPlayNotes(float noteSave[], int timeSave[], int count) {
 		//device.printf("%i, %f", i + 1, noteSave[i]);	//print the notes being played
 		playNote(noteSave[i]);
 		device.printf("TimeSave[%i] = %i\n\r", i, timeSave[i]);
-		if(!delay(timeSave[i] / 500)) {
-			break;
-		}
+		wait_ms(timeSave[i]);
 	}
 	shutUP();
 }
@@ -225,13 +223,11 @@ int main(){
 			}
 			if (switch_7 == 1) {
 				timeSave[noteMarker - 1] = t.read_ms();
-				device.printf(", %i MS\n\r", t.read_ms());
 				shutUP();
 				s7 = false;
 			}
 			if (record_switch == 0) {
 				recording = false;
-				device.printf("\n\rStopped Recording\n\r");
 				wait(1);
 				}
 			}
